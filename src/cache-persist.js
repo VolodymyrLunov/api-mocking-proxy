@@ -12,11 +12,13 @@ const parse = input => {
   const res = {
     code: 200,
     headers: {},
+    replacements: {},
     body: ''
   };
 
   const parts = input.split(/\r?\n\r?\n/);
 
+  // parse code
   if (parts.length) {
     const firstCodeCode = parts[0].charCodeAt(0);
     if (firstCodeCode >= 49 && firstCodeCode <= 53) {
@@ -26,16 +28,17 @@ const parse = input => {
     }
   }
 
+  // parse headers
   if (parts.length) {
-    if (/^\S+:\s*\S+/.test(parts[0])) {
-      parts[0].split(/\r?\n/).forEach(header => {
-        const colon = header.indexOf(':');
-        res.headers[header.substr(0, colon)] = header.substr(colon + 1).replace(/^\s+/, '');
-      });
-      parts.shift();
-    }
+    res.headers = parseObject(parts);
   }
 
+  // parse properties
+  if (parts.length) {
+    res.replacements = parseObject(parts);
+  }
+
+  // parse body
   if (parts.length) {
     res.body = parts.join('\n\n');
   }
@@ -61,10 +64,27 @@ const stringify = input => {
   return result;
 };
 
+const parseObject = parts => {
+  const result = {};
+
+  if (/^\S+:\s*\S+/.test(parts[0])) {
+    parts[0].split(/\r?\n/).forEach(poperty => {
+      const colon = poperty.indexOf(':');
+      result[poperty.substr(0, colon)] = poperty.substr(colon + 1).replace(/^\s+/, '');
+    });
+    parts.shift();
+  }
+
+  return result;
+};
+
 export { parse, stringify };
 
 /*
 200
+
+property: value
+property1: value
 
 Header: value
 Header1: value

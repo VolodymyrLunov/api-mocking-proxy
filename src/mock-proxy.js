@@ -44,6 +44,7 @@ const middleware = () => (req, res, next) => {
   if (urlConf.headers['accept-encoding'] && urlConf.headers['accept-encoding'] === 'gzip') {
     urlConf.gzip = true;
   }
+  delete urlConf.headers['user-agent'];
   // Remove encoding because we've processed the body already.
   delete urlConf.headers['content-encoding'];
   // Reset host

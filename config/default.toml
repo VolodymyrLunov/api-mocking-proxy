@@ -1,0 +1,15 @@
+[server]
+host = "localhost"
+port = 8088
+
+[mappings.account-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/account-api/rest"
+
+[mappings.sport-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/sport-api/rest"
+
+[mappings.session-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/session-api/rest"
+
+[mappings.payment-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/payment-api/rest"
