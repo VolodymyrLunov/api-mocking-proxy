@@ -2,6 +2,8 @@ import cacher from './cacher';
 import {passthru, shouldIgnore} from './app-utils';
 import * as _ from 'underscore';
 
+const store = {};
+
 const middleware = () => (req, res, next) => {
   if (shouldIgnore(req)) {
     return next();
@@ -13,7 +15,7 @@ const middleware = () => (req, res, next) => {
     }
 
     if (!_.isEmpty(payload.replacements)) {
-      try { payload.body = _.template(payload.body)(payload.replacements); }
+      try { payload.body = _.template(payload.body)(payload.replacements).trim(); }
       catch(error) {}
     }
 
