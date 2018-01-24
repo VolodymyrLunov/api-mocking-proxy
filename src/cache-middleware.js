@@ -1,8 +1,9 @@
 import cacher from './cacher';
 import {passthru, shouldIgnore} from './app-utils';
 import * as _ from 'underscore';
+import fs from 'fs';
 
-const store = {};
+const getGLobals = () => JSON.parse(fs.readFileSync('./global-props.json', 'utf-8'));
 
 const middleware = () => (req, res, next) => {
   if (shouldIgnore(req)) {
@@ -14,10 +15,9 @@ const middleware = () => (req, res, next) => {
       return next();
     }
 
-    if (!_.isEmpty(payload.replacements)) {
-      try { payload.body = _.template(payload.body)(payload.replacements).trim(); }
-      catch(error) {}
-    }
+    try {
+      payload.body = _.template(payload.body)(getGLobals()).trim();
+    } catch(error) {}
 
     passthru(res, payload);
   }).catch(err => {

@@ -12,7 +12,6 @@ const parse = input => {
   const res = {
     code: 200,
     headers: {},
-    replacements: {},
     body: ''
   };
 
@@ -31,11 +30,6 @@ const parse = input => {
   // parse headers
   if (parts.length) {
     res.headers = parseObject(parts);
-  }
-
-  // parse properties
-  if (parts.length) {
-    res.replacements = parseObject(parts);
   }
 
   // parse body
