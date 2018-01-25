@@ -2,14 +2,26 @@
 host = "localhost"
 port = 8088
 
-[mappings.account-api]
+[mappings.italy-account-api]
 host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/account-api/rest"
 
-[mappings.sport-api]
+[mappings.italy-sport-api]
 host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/sport-api/rest"
 
-[mappings.session-api]
+[mappings.italy-session-api]
 host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/session-api/rest"
 
-[mappings.payment-api]
+[mappings.italy-payment-api]
 host = "http://feeds.williamhill-swi.com/mobenga_demo23/italy/payment-api/rest"
+
+[mappings.spain-account-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/spain/account-api/rest"
+
+[mappings.spain-sport-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/spain/sport-api/rest"
+
+[mappings.spain-session-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/spain/session-api/rest"
+
+[mappings.spain-payment-api]
+host = "http://feeds.williamhill-swi.com/mobenga_demo23/spain/payment-api/rest"
